@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {
-  createUserWithEmailAndPassword,
+  //createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
@@ -10,18 +10,18 @@ import { auth } from "./firebase-config";
 import "./App.css";
 
 function App() {
-  const [registerEmail, setRegisterEmail] = useState("");
-  const [registerPassword, setRegisterPassword] = useState("");
+  //const [registerEmail, setRegisterEmail] = useState("");
+  //const [registerPassword, setRegisterPassword] = useState("");
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
   const [user, setUser] = useState({});
 
   onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser);
+      setUser(currentUser);
   });
 
-  const register = async () => {
+  /*const register = async () => {
     try {
       const user = await createUserWithEmailAndPassword(
         auth,
@@ -32,7 +32,7 @@ function App() {
     } catch (error) {
       console.log(error.message);
     }
-  };
+  };*/
 
   const login = async () => {
     try {
@@ -53,7 +53,7 @@ function App() {
 
   return (
     <div className="App">
-      <div>
+      {/*<div>
         <h3> Register User </h3>
         <input
           placeholder="Email..."
@@ -69,7 +69,7 @@ function App() {
         />
 
         <button onClick={register}> Create User</button>
-      </div>
+      </div>*/}
 
       <div>
         <h3> Login </h3>

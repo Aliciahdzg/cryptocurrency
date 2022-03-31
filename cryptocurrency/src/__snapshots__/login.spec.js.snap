@@ -10,7 +10,7 @@ Object {
       >
         <div>
           <h3>
-             Register User 
+             Login 
           </h3>
           <input
             placeholder="Email..."
@@ -19,9 +19,21 @@ Object {
             placeholder="Password..."
           />
           <button>
-             Create User
+             Login
           </button>
         </div>
+        <h4>
+           User Logged In: 
+        </h4>
+        <button>
+           Sign Out 
+        </button>
+      </div>
+    </div>
+    <div>
+      <div
+        class="App"
+      >
         <div>
           <h3>
              Login 
@@ -49,20 +61,6 @@ Object {
     <div
       class="App"
     >
-      <div>
-        <h3>
-           Register User 
-        </h3>
-        <input
-          placeholder="Email..."
-        />
-        <input
-          placeholder="Password..."
-        />
-        <button>
-           Create User
-        </button>
-      </div>
       <div>
         <h3>
            Login 

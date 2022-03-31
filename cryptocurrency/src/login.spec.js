@@ -10,30 +10,58 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import App from "./App";
 
 const saveData = jest.fn();
-
-    describe("Login should render", () => {
-      test("renders Login component", () => {
+ // Test unitarios 
+describe("Login should render", () => {
+    test("renders Login component", () => {
         expect(render(<App />)).toMatchSnapshot();
       });
-    });
+});
 
-    /*describe("Input should be rendered", () => {
-        render(<Login />); 
-        test('calls onClick prop when clicked', () => {
-          render(<button onClick={saveData}>Login</button>)
-          fireEvent.click(screen.getByText(/Acceder/i))
-          expect(saveData).toHaveBeenCalledTimes(1)
-        })
+describe("Elements should be rendered", () => {
+    render(<App />); 
+        
+    test("Should content placeholder", () => {
+      render(<App />);
+
+      expect(screen.getByPlaceholderText('Email...')).toBeInTheDocument();
+      expect(screen.getByPlaceholderText('Password...')).toBeInTheDocument();
+    })
+
+    test('calls onClick prop when clicked', () => {
+      render(<button onClick={saveData}>Login</button>)
+      fireEvent.click(screen.getByText(/Login/i))
+
+      expect(screen.getByText(/Login/i)).toBeInTheDocument();
+      expect(saveData).toHaveBeenCalledTimes(1);
+    })
       
       
-        test("renders login component", () => {
-          render(<Login saveData={saveData} />);
-          const submitButton = screen.getByRole('button', { name: /SignIn with Google/i });
+    test("renders Sign out button", () => {
+      render(<App saveData={saveData} />);
+      const submitButton = screen.getByRole('button', { name: /Sign Out/i });
+          
+      expect(screen.getByText(/Sign Out/i)).toBeInTheDocument();
+      expect(saveData).not.toHaveBeenCalled();
       
-          expect(saveData).toHaveBeenCalled();
-      
-          fireEvent.click(submitButton);
-      
-          //expect(saveData).toHaveBeenCalledWith('waiter@bq.com', '123456');
-        })
-      })*/
+      fireEvent.click(submitButton);
+    })
+})
+
+// Test de integracion
+test('Should user LogIn', () => {
+  const mockHandleLogin = jest.fn();
+  render(<App handleLogin={mockHandleLogin} />);
+
+  const contentEmail = screen.getByPlaceholderText('Email...');
+  const contentPassword = screen.getByPlaceholderText('Password...');
+  const buttonLogin = screen.getByRole('button', { name: /Login/i });
+
+  const emailValue = 'prueba@prueba.com';
+  const passwordValue = '123456';
+
+  fireEvent.change(contentEmail, { target: { value: emailValue } });
+  fireEvent.change(contentPassword, { target: { value: passwordValue } });
+  fireEvent.click(buttonLogin);
+
+  expect(mockHandleLogin).not.toHaveBeenCalled();
+})
