@@ -36,14 +36,15 @@ function App() {
 
   const login = async () => {
     try {
+      console.log('Ya llegue')
       const user = await signInWithEmailAndPassword(
         auth,
         loginEmail,
         loginPassword
       );
-      console.log(user);
+      //console.log(user);
     } catch (error) {
-      console.log(error.message);
+      //console.log(error.message);
     }
   };
 
@@ -86,7 +87,7 @@ function App() {
           }}
         />
 
-        <button onClick={login}> Login</button>
+        <button onClick={login}>Login</button>
       </div>
 
       <h4> User Logged In: </h4>

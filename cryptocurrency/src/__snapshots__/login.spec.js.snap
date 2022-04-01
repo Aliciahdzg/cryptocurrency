@@ -19,7 +19,7 @@ Object {
             placeholder="Password..."
           />
           <button>
-             Login
+            Login
           </button>
         </div>
         <h4>
@@ -45,7 +45,7 @@ Object {
             placeholder="Password..."
           />
           <button>
-             Login
+            Login
           </button>
         </div>
         <h4>
@@ -72,7 +72,7 @@ Object {
           placeholder="Password..."
         />
         <button>
-           Login
+          Login
         </button>
       </div>
       <h4>
