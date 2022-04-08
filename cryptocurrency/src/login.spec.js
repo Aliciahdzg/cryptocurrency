@@ -5,10 +5,8 @@
 import React from 'react';
 import "@testing-library/jest-dom";
 import { render, screen, fireEvent, waitFor, act } from "@testing-library/react";
-import userEvent from '@testing-library/user-event'
+import user from '@testing-library/user-event'
 
-
-import { login } from './App';
 import App from "./App";
 
 const saveData = jest.fn();
@@ -51,11 +49,11 @@ describe("Elements should be rendered", () => {
 })
 
 // Test de integracion
-const currentUser = {
+/*const currentUser = {
   email: "prueba@prueba.com"
-}
+}*/
 //jest.mock(login)
-const mockLoginSuccess = () => {
+/*const mockLoginSuccess = () => {
   login.jest.mock()
     .mockImplementationOnce(() => Promise.resolve(currentUser));
  }
@@ -63,9 +61,9 @@ const mockLoginSuccess = () => {
   userEvent.type(screen.getByPlaceholderText('Email...'), name)
   userEvent.type(screen.getByPlaceholderText('Password...'), password)
   userEvent.click(screen.getByText(/login/i))
- }
+ }*/
 
-test ('Is logged in', async () => {
+/*test ('Is logged in', async () => {
   mockLoginSuccess()
   render(<App />)
 
@@ -74,29 +72,34 @@ test ('Is logged in', async () => {
   await waitFor(() => {
     expect(mockLoginSuccess).toHaveBeenCalledWith(contentEmail, contentPassword);
   })
-})
-/*test('Should user LogIn', async () => {
-  const mockHandleLogin = jest.fn();
+})*/
+
+const currentUser = {
+  email: "prueba@prueba.com"
+}
+
+test('Should user LogIn', async () => {
+  const promise = Promise.resolve(currentUser);
+  const mockHandleLogin = jest.fn(() => promise);
   
   const emailValue = 'prueba@prueba.com';
   const passwordValue = '123456';
 
-  render(<App />);
+  render(<App handleLogin={mockHandleLogin}/>);
 
   const contentEmail = screen.getByPlaceholderText('Email...');
-  //user.type(contentEmail, emailValue)
+  user.type(contentEmail, emailValue)
   const contentPassword = screen.getByPlaceholderText('Password...');
-  //user.type(contentPassword, passwordValue);
+  user.type(contentPassword, passwordValue);
   const buttonLogin = screen.getByRole('button', { name: /Login/i });
-  
-  console.log('BOTON');
-  console.log(buttonLogin);
+  user.click(buttonLogin);
 
-  fireEvent.change(contentEmail, { target: { value: emailValue } });
-  fireEvent.change(contentPassword, { target: { value: passwordValue } });
-  fireEvent.click(buttonLogin);
+  //fireEvent.change(contentEmail, { target: { value: emailValue } });
+  //fireEvent.change(contentPassword, { target: { value: passwordValue } });
+  //fireEvent.click(buttonLogin);
   
-  expect(login).toHaveBeenCalled();
+  expect(mockHandleLogin).toHaveBeenCalled();
+  await act(() => promise);
   //await waitFor(() => expect(mockHandleLogin).toHaveBeenCalledWith(contentEmail, contentPassword) );
   //expect(await screen.findByText(/prueba@prueba.com/i));
-})*/
+})
