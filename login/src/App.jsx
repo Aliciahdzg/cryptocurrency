@@ -7,7 +7,7 @@ import {
 } from "firebase/auth";
 
 import { auth } from "./firebase-config";
-import "./App.css";
+import "./App.css"; 
 
 function App() {
   //const [registerEmail, setRegisterEmail] = useState("");

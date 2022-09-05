@@ -1,18 +1,19 @@
 {
-  "name": "cryptocurrency",
+  "name": "my-webpack-project",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "webpack --mode=production --node-env=production",
     "preview": "vite preview",
-    "test": "jest src"
+    "test": "jest src",
+    "build:dev": "webpack --mode=development",
+    "build:prod": "webpack --mode=production --node-env=production",
+    "watch": "webpack --watch",
+    "serve": "webpack serve"
   },
   "dependencies": {
-    "@babel/core": "^7.17.8",
-    "@babel/plugin-syntax-jsx": "^7.16.7",
-    "@babel/preset-env": "^7.16.11",
-    "@babel/preset-react": "^7.16.7",
+    "@babel/runtime": "^7.18.0",
     "@testing-library/dom": "^8.12.0",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/user-event": "^14.0.0",
@@ -28,9 +29,25 @@
     "react-firebase-hooks": "^5.0.3"
   },
   "devDependencies": {
+    "@babel/plugin-syntax-jsx": "^7.16.7",
+    "@babel/preset-react": "^7.16.7",
+    "@babel/core": "^7.17.12",
+    "babel-loader": "^8.2.5",
+    "@babel/plugin-transform-runtime": "^7.18.0",
+    "@babel/preset-env": "^7.17.12",
     "@testing-library/react": "^12.1.4",
     "@vitejs/plugin-react": "^1.0.7",
-    "vite": "^2.9.0"
+    "@webpack-cli/generators": "^2.4.2",
+    "css-loader": "^6.7.1",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.6.0",
+    "prettier": "^2.6.2",
+    "style-loader": "^3.3.1",
+    "vite": "^2.9.0",
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.9.0",
+    "workbox-webpack-plugin": "^6.5.3"
   },
   "jest": {
     "roots": [
@@ -64,14 +81,5 @@
       "jest-watch-typeahead/testname"
     ],
     "resetMocks": true
-  },
-  "babel": {
-    "env": {
-      "test": {
-        "presets": [
-          "react-app"
-        ]
-      }
-    }
   }
 }
